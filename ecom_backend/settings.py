@@ -81,19 +81,26 @@ WSGI_APPLICATION = 'ecom_backend.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg3', # Change this line
+        'NAME': 'ecom_db',
+        # ... other database settings
     }
 }
 
+
 # This part checks if the DATABASE_URL environment variable exists (which it will on Render)
 # and overrides the default SQLite setting if it does.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True,
-        ssl_require=True, # Important for secure connections on Render
-    )
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=True,
+            options={'sslmode': 'require'},
+        )
+    }
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
