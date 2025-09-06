@@ -84,14 +84,7 @@ WSGI_APPLICATION = 'ecom_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ecom_db',                 
-        'USER': 'root',                   
-        'PASSWORD': 'kunal',  
-        'HOST': '127.0.0.1',                 
-        'PORT': '3306',                      
-    }
+    'default': dj_database_url.config(conn_max_age=600)
 }
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
