@@ -4,12 +4,14 @@ services:
     name: ecom-db
     env: postgres
     plan: free
+    region: singapore # Specify a region
 
   # The Django Web Service
   - type: web
     name: ecom-backend
-    env: python
+    env: python # Use the python environment
     plan: free
+    region: singapore # Specify a region
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn ecom_backend.wsgi"
     envVars:
