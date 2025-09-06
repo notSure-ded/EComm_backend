@@ -1,15 +1,15 @@
 services:
-  # The PostgreSQL Database
+  
   - type: pserv
     name: ecom-db
-    env: postgres      # <-- Correct: Use 'env' for database type
+    env: postgres   
     plan: free
     region: singapore
 
-  # The Django Web Service
+
   - type: web
     name: ecom-backend
-    env: python        # <-- Correct: Use 'env' for the language runtime
+    env: python      
     plan: free
     region: singapore
     buildCommand: "pip install -r requirements.txt; python manage.py migrate"
