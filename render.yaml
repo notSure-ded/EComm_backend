@@ -1,0 +1,24 @@
+services:
+  # The PostgreSQL Database
+  - type: pserv
+    name: ecom-db
+    env: postgres
+    plan: free
+
+  # The Django Web Service
+  - type: web
+    name: ecom-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn ecom_backend.wsgi"
+    envVars:
+      - key: DATABASE_URL
+        fromService:
+          type: pserv
+          name: ecom-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
