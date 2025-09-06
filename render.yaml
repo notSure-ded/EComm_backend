@@ -2,17 +2,17 @@ services:
   # The PostgreSQL Database
   - type: pserv
     name: ecom-db
-    env: postgres
+    env: postgres      # <-- Correct: Use 'env' for database type
     plan: free
-    region: singapore # Specify a region
+    region: singapore
 
   # The Django Web Service
   - type: web
     name: ecom-backend
-    env: python # Use the python environment
+    env: python        # <-- Correct: Use 'env' for the language runtime
     plan: free
-    region: singapore # Specify a region
-    buildCommand: "pip install -r requirements.txt"
+    region: singapore
+    buildCommand: "pip install -r requirements.txt; python manage.py migrate"
     startCommand: "gunicorn ecom_backend.wsgi"
     envVars:
       - key: DATABASE_URL
