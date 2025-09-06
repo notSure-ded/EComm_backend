@@ -58,7 +58,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # Your React dev server
     "http://localhost:5173",
-    "https://ecomm-frontend-jet.vercel.app"
+    "https://ecomm-frontend-jet.vercel.app",
 ]
 ROOT_URLCONF = 'ecom_backend.urls'
 
