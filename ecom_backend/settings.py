@@ -35,6 +35,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Add Whitenoise middleware here
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,7 +50,17 @@ CORS_ALLOWED_ORIGINS = [
     "https://ecomm-frontend-jet.vercel.app",
 ]
 ROOT_URLCONF = 'ecom_backend.urls'
+STATIC_URL = 'static/'
+# This is the directory where static files will be collected.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Optional: You can also specify extra directories for static files here.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Configure Whitenoise to use compressed and hashed files for better performance
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
