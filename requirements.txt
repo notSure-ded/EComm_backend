@@ -8,12 +8,13 @@ djangorestframework-simplejwt==5.3.1
 dj-database-url==2.2.0
 gunicorn==22.0.0
 mysqlclient==2.2.4 # Remove this if not using MySQL
-psycopg[binary]==3.1.18
+psycopg==3.1.18
 pytz==2024.1
 PyYAML==6.0.1
 sqlparse==0.5.0
 tzdata==2024.1
 whitenoise==6.6.0 # Added a version number
+
 
 
 
